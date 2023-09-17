@@ -1,5 +1,5 @@
-import {cart} from '../data/cart.js';
-import {products} from '../data/products.js';
+import { cart, addToCart } from '../data/cart.js';
+import { products } from '../data/products.js';
 let productsHtml = '';
 
 products.forEach((product) => {
@@ -55,46 +55,29 @@ products.forEach((product) => {
 `
 })
 
+
 document.querySelector('.js-products-grid')
      .innerHTML = productsHtml;
+
+function updateCartQuantity() {
+
+     let cartQuantity = 0;
+
+     cart.forEach((iteam) => {
+          cartQuantity += iteam.quantity;
+     });
+     document.querySelector('.js-cart-quantity')
+          .innerHTML = cartQuantity;
+}
+
+
 
 document.querySelectorAll('.js-add-to-cart-btn')
      .forEach((button) => {
           button.addEventListener('click', () => {
 
                const productId = button.dataset.productId;
-
-               let matchingIteam;
-               cart.forEach((iteam) => {
-                    if (productId === iteam.productId) {
-                         matchingIteam = iteam;
-                    };
-               });
-               if (matchingIteam) {
-                    matchingIteam.quantity += 1;
-                    // matchingIteam.quantity += selector;
-               } else {
-                    cart.push({
-                         productId: productId,
-                         quantity: 1
-                    })
-               };
-
-               let cartQuantity = 0;
-               
-               cart.forEach((iteam) => {
-                    cartQuantity += iteam.quantity ;
-                    // cartQuantity += selector;
-               });
-               document.querySelector('.js-cart-quantity')
-                    .innerHTML = cartQuantity;
-                   
-
-                    // document.querySelector('.js-cart-quantity')
-                    // .innerHTML = selector;
-          //           let selector = document.querySelector('.js-quantity-selector-${product.id}').value;
-          //      console.log(selector);
-          //      document.querySelector('.js-added-${product.id}')
-          //      .classList.add('added');
+               addToCart(productId);
+               updateCartQuantity();
           });
      });
