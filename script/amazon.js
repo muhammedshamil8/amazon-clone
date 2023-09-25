@@ -27,7 +27,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-          <select class="js-quantity-selector-${product.id}">
+          <select>
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -43,7 +43,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart js-added-${product.id}">
+          <div class="added-to-cart">
           <img src="images/icons/checkmark.png">
           Added
           </div>
@@ -63,8 +63,8 @@ function updateCartQuantity() {
 
      let cartQuantity = 0;
 
-     cart.forEach((iteam) => {
-          cartQuantity += iteam.quantity;
+     cart.forEach((cartIteam) => {
+          cartQuantity += cartIteam.quantity;
      });
      document.querySelector('.js-cart-quantity')
           .innerHTML = cartQuantity;

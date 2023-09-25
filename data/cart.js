@@ -2,9 +2,10 @@ export const cart = [];
 
 export function addToCart(productId) {
      let matchingIteam;
-     cart.forEach((iteam) => {
-          if (productId === iteam.productId) {
-               matchingIteam = iteam;
+     
+     cart.forEach((cartIteam) => {
+          if (productId === cartIteam.productId) {
+               matchingIteam = cartIteam;
           };
      });
      if (matchingIteam) {
