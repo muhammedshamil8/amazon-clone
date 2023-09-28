@@ -3,6 +3,7 @@
   padding-left: 30px;
   padding-right: 30px;
   background-color: white;
+  border-bottom: 1px solid #f1f0f0;
 
   display: flex;
   justify-content: center;
