@@ -13,6 +13,7 @@ cart.forEach((cartIteam) => {
           if (product.id === productId) {
                matchingProduct = product;
           }
+          
      });
 
 
@@ -94,6 +95,7 @@ cart.forEach((cartIteam) => {
             </div>
           </div>
      `;
+
 });
 
 document.querySelector('.js-order-summary')
@@ -108,6 +110,22 @@ document.querySelectorAll('.js-delete-link')
 
                const container = document.querySelector(`.js-cart-iteam-container-${productId}`);
           container.remove();   
-
+          updateCartQuantity(removedQuantity);
           });
      });
+
+     function updateCartQuantity(removedQuantity) {
+
+      let cartQuantity= 0;
+ 
+      cart.forEach((cartIteam) => {    
+            cartQuantity += cartIteam.quantity;     
+      });
+
+      if (removedQuantity){
+        cartQuantity -= removedQuantity;
+      }
+      document.querySelector('.js-iteams-head')
+           .innerHTML = cartQuantity + ' iteams';
+ }
+ updateCartQuantity();
